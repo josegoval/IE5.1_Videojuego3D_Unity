@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8272642082128547895}
   - component: {fileID: 8272642082128547888}
   - component: {fileID: 414939487}
+  - component: {fileID: 414939485}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -66,6 +67,23 @@ MonoBehaviour:
   speed: 5
   jumpForce: 10
   gravity: -20
+--- !u!114 &414939485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272642082128547889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbd7992c3f0e7a4baffdb8d20d38fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensibility: 3
+  invertControls: 0
+  maxLookUp: 80
+  minLookUp: -70
+  lookRootComponent: {fileID: 8272642082977390412}
 --- !u!1 &8272642082406563001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,7 +1332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: ded3362b8b3b82243b3043bb355c770c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: ded3362b8b3b82243b3043bb355c770c, type: 3}
       propertyPath: m_Layer
@@ -1605,7 +1623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100028, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100030, guid: 2bd6bf150a6e08645964bd2baf2a789b, type: 3}
       propertyPath: m_Layer
