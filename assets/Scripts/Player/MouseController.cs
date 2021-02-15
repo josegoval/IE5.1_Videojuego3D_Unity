@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
+    // Actor References
+    [SerializeField]
+    private GameObject lookRootComponent;
     // Control customization
     public float mouseSensibility = 3f;
     public bool invertControls = false;
@@ -14,9 +17,6 @@ public class MouseController : MonoBehaviour
     private float maxLookUp = 80f;
     [SerializeField]
     private float minLookUp = -70f;
-    // Actor References
-    [SerializeField]
-    private GameObject lookRootComponent;
 
     // Start is called before the first frame update
     void Start()

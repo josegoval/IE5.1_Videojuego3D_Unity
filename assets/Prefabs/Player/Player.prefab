@@ -64,7 +64,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0e56fe5ec609747aca420b9ec4e9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  LookRoot: {fileID: 8272642082977390412}
+  sprintSpeed: 8
+  normalSpeed: 4
+  crouchSpeed: 1.5
+  currentSpeed: 0
   jumpForce: 10
   gravity: -20
 --- !u!114 &414939485
@@ -79,11 +83,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbd7992c3f0e7a4baffdb8d20d38fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookRootComponent: {fileID: 8272642082977390412}
   mouseSensibility: 3
   invertControls: 0
   maxLookUp: 80
   minLookUp: -70
-  lookRootComponent: {fileID: 8272642082977390412}
 --- !u!1 &8272642082406563001
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8272642082977390412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.088, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8272642082929608704}
