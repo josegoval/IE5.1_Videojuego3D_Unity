@@ -30,7 +30,7 @@ public class MouseController : MonoBehaviour
     {
         ToggleMouse();
 
-        if (Cursor.lockState == CursorLockMode.Locked);
+        if (Cursor.lockState == CursorLockMode.Locked)
         {
             MouseRotation();
         }
