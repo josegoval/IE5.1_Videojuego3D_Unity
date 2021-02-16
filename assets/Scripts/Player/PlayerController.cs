@@ -26,18 +26,32 @@ public class PlayerController : MonoBehaviour
     public float gravity = -20f;
     // TODO: Clamp verticalVelocity
     private float verticalVelocity;
+    // Sounds and Audio
+        // Footsteps
+    private PlayerFootsteps playerFootsteps;
+    public float minTimeBetweenFootsepsSprinting = 0.25f;
+    public float minStepVolumeSprinting = 0.8f;
+    public float maxStepVolumeSprinting = 1f;
+    public float minTimeBetweenFootsepsWalking = 0.4f;
+    public float minStepVolumeWalking = 0.6f;
+    public float maxStepVolumeWalking = 0.4f;
+    public float minTimeBetweenFootsepsCrouching = 0.5f;
+    public float minStepVolumeCrouching = 0.1f;
+    public float maxStepVolumeCrouching = 0.2f;
 
     private void Awake()
     {
-        
+        characterController = GetComponent<CharacterController>();
+        playerFootsteps = GetComponentInChildren<PlayerFootsteps>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
         // Set default speed
         currentSpeed = normalSpeed;
+        // Set default sounds
+        setWalkingSounds();
     }
 
     // Update is called once per frame
@@ -56,12 +70,14 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(PlayerControls.Sprint))
             {
                 currentSpeed = sprintSpeed;
+                playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsSprinting, minStepVolumeSprinting, maxStepVolumeSprinting);
                 return;
             }
             // Stop sprinting
             if (Input.GetKeyUp(PlayerControls.Sprint))
             {
                 currentSpeed = normalSpeed;
+                setWalkingSounds();
                 return;
             }
         }
@@ -77,6 +93,7 @@ public class PlayerController : MonoBehaviour
                 LookRoot.transform.localPosition = new Vector3(0f, standHeight);
                 currentSpeed = normalSpeed;
                 isCrouching = false;
+                setWalkingSounds();
                 return;
             }
 
@@ -84,6 +101,7 @@ public class PlayerController : MonoBehaviour
             LookRoot.transform.localPosition = new Vector3(0f, crouchHeight);
             currentSpeed = crouchSpeed;
             isCrouching = true;
+            playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsCrouching, minStepVolumeCrouching, maxStepVolumeCrouching);
         }
     }
 
@@ -112,5 +130,10 @@ public class PlayerController : MonoBehaviour
         {
             verticalVelocity = jumpForce;
         }
+    }
+
+    private void setWalkingSounds()
+    {
+        playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsWalking, minStepVolumeWalking, maxStepVolumeWalking);
     }
 }
