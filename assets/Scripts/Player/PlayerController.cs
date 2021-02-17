@@ -67,14 +67,14 @@ public class PlayerController : MonoBehaviour
         if (!isCrouching)
         {
             // Start sprinting
-            if (Input.GetKey(PlayerControls.Sprint))
+            if (Input.GetKey(PlayerControlTags.Sprint))
             {
                 currentSpeed = sprintSpeed;
                 playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsSprinting, minStepVolumeSprinting, maxStepVolumeSprinting);
                 return;
             }
             // Stop sprinting
-            if (Input.GetKeyUp(PlayerControls.Sprint))
+            if (Input.GetKeyUp(PlayerControlTags.Sprint))
             {
                 currentSpeed = normalSpeed;
                 setWalkingSounds();
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void Crouch()
     {
-        if (Input.GetKeyDown(PlayerControls.Crouch))
+        if (Input.GetKeyDown(PlayerControlTags.Crouch))
         {
             // To stand up
             if (isCrouching)
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        moveTo = new Vector3(Input.GetAxis(PlayerControls.HORIZONTAL), 0f, Input.GetAxis(PlayerControls.VERTICAL));
+        moveTo = new Vector3(Input.GetAxis(PlayerControlTags.HORIZONTAL), 0f, Input.GetAxis(PlayerControlTags.VERTICAL));
         moveTo = transform.TransformDirection(moveTo);
         moveTo *= currentSpeed * Time.deltaTime;
 
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
     private void JumpBehaviour()
     {
-        if (characterController.isGrounded && Input.GetKeyDown(PlayerControls.JUMP))
+        if (characterController.isGrounded && Input.GetKeyDown(PlayerControlTags.JUMP))
         {
             verticalVelocity = jumpForce;
         }

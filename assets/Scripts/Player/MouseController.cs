@@ -38,7 +38,7 @@ public class MouseController : MonoBehaviour
 
     private void ToggleMouse()
     {
-        if (Input.GetKeyDown(PlayerControls.TOGGLE_MOUSE))
+        if (Input.GetKeyDown(PlayerControlTags.TOGGLE_MOUSE))
         {
             // Lock mouse
             if (Cursor.lockState == CursorLockMode.Locked)
@@ -54,8 +54,8 @@ public class MouseController : MonoBehaviour
     private void MouseRotation()
     {
         // Get mouse inputs 
-        float lookHorizontal = Input.GetAxis(PlayerControls.MOUSE_X);
-        float lookUp = Input.GetAxis(PlayerControls.MOUSE_Y);
+        float lookHorizontal = Input.GetAxis(PlayerControlTags.MOUSE_X);
+        float lookUp = Input.GetAxis(PlayerControlTags.MOUSE_Y);
         // Invert controls if necessary
         if (!invertControls)
         {
