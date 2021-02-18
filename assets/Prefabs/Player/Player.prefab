@@ -162,7 +162,8 @@ MonoBehaviour:
   ReloadAudioSourceSound: {fileID: 0}
   weaponFireType: 0
   projectileType: 1
-  weaponAim: 1
+  weaponAimType: 1
+  fireRate: 2
   MuzzleFlash: {fileID: 0}
 --- !u!114 &1193882803
 MonoBehaviour:
@@ -180,7 +181,8 @@ MonoBehaviour:
   ReloadAudioSourceSound: {fileID: 0}
   weaponFireType: 0
   projectileType: 2
-  weaponAim: 1
+  weaponAimType: 1
+  fireRate: 2
   MuzzleFlash: {fileID: 0}
 --- !u!82 &47793286
 AudioSource:
@@ -390,7 +392,8 @@ MonoBehaviour:
   ReloadAudioSourceSound: {fileID: 0}
   weaponFireType: 0
   projectileType: 3
-  weaponAim: 2
+  weaponAimType: 2
+  fireRate: 1.5
   MuzzleFlash: {fileID: 0}
 --- !u!1 &8272642082128547889
 GameObject:
@@ -405,6 +408,7 @@ GameObject:
   - component: {fileID: 414939487}
   - component: {fileID: 414939485}
   - component: {fileID: 8272642081476474963}
+  - component: {fileID: 8272642081476474957}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -510,6 +514,18 @@ MonoBehaviour:
   - {fileID: 47793285}
   - {fileID: 1193882803}
   - {fileID: 1752813200}
+--- !u!114 &8272642081476474957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272642082128547889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc2642d761295c42872f219a8bae5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &1107237396
 AudioSource:
   m_ObjectHideFlags: 0
@@ -622,7 +638,8 @@ MonoBehaviour:
   ReloadAudioSourceSound: {fileID: 0}
   weaponFireType: 0
   projectileType: 0
-  weaponAim: 0
+  weaponAimType: 0
+  fireRate: 1
   MuzzleFlash: {fileID: 0}
 --- !u!1 &8272642082406563001
 GameObject:
@@ -962,7 +979,8 @@ MonoBehaviour:
   ReloadAudioSourceSound: {fileID: 0}
   weaponFireType: 0
   projectileType: 3
-  weaponAim: 2
+  weaponAimType: 2
+  fireRate: 0.7
   MuzzleFlash: {fileID: 0}
 --- !u!82 &830750424
 AudioSource:
@@ -1076,7 +1094,8 @@ MonoBehaviour:
   ReloadAudioSourceSound: {fileID: 0}
   weaponFireType: 1
   projectileType: 3
-  weaponAim: 2
+  weaponAimType: 2
+  fireRate: 0.3
   MuzzleFlash: {fileID: 0}
 --- !u!1001 &8272642081310324917
 PrefabInstance:

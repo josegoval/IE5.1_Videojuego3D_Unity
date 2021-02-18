@@ -12,7 +12,8 @@ public class WeaponHandler : MonoBehaviour
     // Weapon characteristics
     public WeaponFireType weaponFireType;
     public ProjectileType projectileType;
-    public WeaponAimType weaponAim;
+    public WeaponAimType weaponAimType;
+    public float fireRate;
         // TODO: AttackPoint
     // Object references
     public GameObject MuzzleFlash;
