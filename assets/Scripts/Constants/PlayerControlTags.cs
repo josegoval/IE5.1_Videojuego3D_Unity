@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControlTags{
+public class PlayerControlTags {
     // Movement
     public const string HORIZONTAL = "Horizontal";
     public const string VERTICAL = "Vertical";
