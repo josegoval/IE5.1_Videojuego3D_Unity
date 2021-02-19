@@ -14,6 +14,8 @@ public class WeaponHandler : MonoBehaviour
     public ProjectileType projectileType;
     public WeaponAimType weaponAimType;
     public float fireRate;
+    private float timeBetweenShoots;
+    private bool isSelected = false;
         // TODO: AttackPoint
     // Object references
     public GameObject MuzzleFlash;
@@ -21,6 +23,43 @@ public class WeaponHandler : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        timeBetweenShoots = fireRate;
+    }
+
+    private void Update()
+    {
+        // Update time
+        if (isSelected)
+        {
+            timeBetweenShoots += Time.deltaTime;
+        }
+    }
+
+    public void Shoot()
+    {
+        
+        if (timeBetweenShoots >= fireRate)
+        {
+            PlayShootAnimation();
+            timeBetweenShoots = 0;
+        }
+    }
+
+    public void DrawWeapon()
+    {
+        gameObject.SetActive(true);
+        timeBetweenShoots = fireRate;
+        isSelected = true;
+    }
+
+    public void SaveWeapon()
+    {
+        gameObject.SetActive(false);
+        isSelected = false;
     }
 
     public void PlayShootAnimation()

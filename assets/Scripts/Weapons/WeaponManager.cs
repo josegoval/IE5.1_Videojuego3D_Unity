@@ -11,7 +11,7 @@ public class WeaponManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        weaponHandlers[currentSelectedWeapon].gameObject.SetActive(true);
+        weaponHandlers[currentSelectedWeapon].DrawWeapon();
     }
 
     // Update is called once per frame
@@ -55,8 +55,8 @@ public class WeaponManager : MonoBehaviour
                 ? newWeaponSelected
                 : 0;
 
-        weaponHandlers[currentSelectedWeapon].gameObject.SetActive(false);
-        weaponHandlers[nextWeapon].gameObject.SetActive(true);
+        weaponHandlers[currentSelectedWeapon].SaveWeapon();
+        weaponHandlers[nextWeapon].DrawWeapon();
         currentSelectedWeapon = nextWeapon;
     }
 

@@ -23,26 +23,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void CheckShoot()
     {
-        WeaponHandler currentWeapon = weaponManager.getCurrentSelectedWeaponHandler();
-        // Checking previous weapon to adapt fireRate
-        if (previousFireRate != currentWeapon.fireRate)
-        {
-            previousFireRate = currentWeapon.fireRate;
-            timeBetweenShoots = previousFireRate;
-        }
-
-        timeBetweenShoots += Time.deltaTime;
-
         // Shoot functionality
         if (Input.GetKey(PlayerControlTags.ACTION_1))
         {
-            
-            if (timeBetweenShoots >= previousFireRate)
-            {
-                currentWeapon.PlayShootAnimation();
-                timeBetweenShoots = 0;
-            }
-            return;
+            weaponManager.getCurrentSelectedWeaponHandler().Shoot();
         }
         //// Non automatic weapon
         //if (Input.GetKeyDown(PlayerControlTags.ACTION_1))
