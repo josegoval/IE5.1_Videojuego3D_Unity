@@ -65,6 +65,8 @@ public class WeaponHandler : MonoBehaviour
 
     public void PlayShootAnimation()
     {
+        if (weaponAimType == WeaponAimType.SELF_AIM && !IsAiming()) return;
+
         animator.SetTrigger(WeaponsTags.PARAMETER_SHOOT);
     }
     public void PlayShootSound()

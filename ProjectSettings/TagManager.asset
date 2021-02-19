@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FP Camera
   - Look Root
+  - Crosshair
   layers:
   - Default
   - TransparentFX

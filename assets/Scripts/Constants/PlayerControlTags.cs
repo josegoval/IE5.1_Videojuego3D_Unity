@@ -18,4 +18,5 @@ public class PlayerControlTags {
     public const KeyCode TOGGLE_MOUSE = KeyCode.Escape;
     // Hierarchy
     public const string LOOK_ROOT_TAG = "Look Root";
+    public const string CROSSHAIR_TAG = "Crosshair";
 }
