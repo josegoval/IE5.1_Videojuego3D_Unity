@@ -84,6 +84,9 @@ public class WeaponHandler : MonoBehaviour
     {
         animator.SetBool(WeaponsTags.PARAMETER_IS_AIMING, false);
     }
-
+    public bool IsAiming()
+    {
+        return animator.GetBool(WeaponsTags.PARAMETER_IS_AIMING);
+    }
 
 }

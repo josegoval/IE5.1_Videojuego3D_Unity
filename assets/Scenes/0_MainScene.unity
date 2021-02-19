@@ -642,6 +642,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8272642082929608705, guid: c7a547976d9d0e045bde4395944591e8,
+        type: 3}
+      propertyPath: m_TagString
+      value: FP Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8272642082977390412, guid: c7a547976d9d0e045bde4395944591e8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Look Root
+      objectReference: {fileID: 0}
     - target: {fileID: 8272642083134703235, guid: c7a547976d9d0e045bde4395944591e8,
         type: 3}
       propertyPath: m_LocalPosition.x
