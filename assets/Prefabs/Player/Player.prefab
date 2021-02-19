@@ -393,7 +393,7 @@ MonoBehaviour:
   weaponFireType: 0
   projectileType: 3
   weaponAimType: 2
-  fireRate: 1.5
+  fireRate: 1.7
   MuzzleFlash: {fileID: 0}
 --- !u!1 &8272642082128547889
 GameObject:
@@ -639,7 +639,7 @@ MonoBehaviour:
   weaponFireType: 0
   projectileType: 0
   weaponAimType: 0
-  fireRate: 1
+  fireRate: 0.6
   MuzzleFlash: {fileID: 0}
 --- !u!1 &8272642082406563001
 GameObject:
@@ -980,7 +980,7 @@ MonoBehaviour:
   weaponFireType: 0
   projectileType: 3
   weaponAimType: 2
-  fireRate: 0.7
+  fireRate: 0.2
   MuzzleFlash: {fileID: 0}
 --- !u!82 &830750424
 AudioSource:
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   weaponFireType: 1
   projectileType: 3
   weaponAimType: 2
-  fireRate: 0.3
+  fireRate: 0.2
   MuzzleFlash: {fileID: 0}
 --- !u!1001 &8272642081310324917
 PrefabInstance:

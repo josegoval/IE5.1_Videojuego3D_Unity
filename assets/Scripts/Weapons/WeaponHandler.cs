@@ -14,6 +14,7 @@ public class WeaponHandler : MonoBehaviour
     public ProjectileType projectileType;
     public WeaponAimType weaponAimType;
     public float fireRate;
+    // Weapon functionality
     private float timeBetweenShoots;
     private bool isSelected = false;
         // TODO: AttackPoint
