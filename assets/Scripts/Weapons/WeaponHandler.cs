@@ -46,9 +46,8 @@ public class WeaponHandler : MonoBehaviour
     public void Shoot(Camera mainCamera)
     {
         
-        if (timeBetweenShoots >= fireRate)
+        if (timeBetweenShoots >= fireRate && PlayShootAnimation())
         {
-            PlayShootAnimation();
             timeBetweenShoots = 0;
 
             LaunchProjectile(mainCamera);
@@ -62,7 +61,7 @@ public class WeaponHandler : MonoBehaviour
         // Raycast projectile
         if (projectileType == ProjectileType.BULLET)
         {
-            // Raycast
+            LaunchRaycast(mainCamera);
         }
 
         // Physical projectile
@@ -73,6 +72,17 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
+    private void LaunchRaycast(Camera mainCamera)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit))
+        {
+            print("RAYCAST HIT: " + hit.transform.gameObject.ToString());
+        }
+
+
+    }
+
     private bool CanLaunchProjectile()
     {
         return projectileType == ProjectileType.SPEAR || projectileType == ProjectileType.ARROW;
@@ -81,7 +91,7 @@ public class WeaponHandler : MonoBehaviour
     public void DrawWeapon()
     {
         gameObject.SetActive(true);
-        timeBetweenShoots = fireRate;
+        timeBetweenShoots = animator.GetCurrentAnimatorStateInfo(0).length;
         isSelected = true;
     }
 
@@ -91,11 +101,12 @@ public class WeaponHandler : MonoBehaviour
         isSelected = false;
     }
 
-    public void PlayShootAnimation()
+    public bool PlayShootAnimation()
     {
-        if (weaponAimType == WeaponAimType.SELF_AIM && !IsAiming()) return;
+        if (weaponAimType == WeaponAimType.SELF_AIM && !IsAiming()) return false;
 
         animator.SetTrigger(WeaponsTags.PARAMETER_SHOOT);
+        return true;
     }
     public void PlayShootSound()
     {

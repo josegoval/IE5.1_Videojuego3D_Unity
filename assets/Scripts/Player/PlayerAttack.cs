@@ -80,7 +80,7 @@ public class PlayerAttack : MonoBehaviour
         // Shoot functionality
         if (Input.GetKey(PlayerControlTags.ACTION_1))
         {
-            currentSelectedWeapon.Shoot(camera);
+            currentSelectedWeapon.Shoot(mainCamera);
         }
         //// Non automatic weapon
         //if (Input.GetKeyDown(PlayerControlTags.ACTION_1))

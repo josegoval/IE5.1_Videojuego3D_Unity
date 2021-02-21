@@ -6,6 +6,7 @@ public class ProjectileHandler : MonoBehaviour
 {
     //Projectile references
     private Rigidbody projectileRigidbody;
+    public GameObject centerOfMass;
     //Projectile features
     public float velocity = 20f;
     public float despawnTime = 3f;
@@ -30,10 +31,12 @@ public class ProjectileHandler : MonoBehaviour
 
     public void SpawnAndLauchProjectile(Camera mainCamera)
     {
+        // Remove parent to prevent rotate with the user
+        transform.SetParent(null);
         // Changes velocity
         projectileRigidbody.velocity = mainCamera.transform.forward * velocity;
         // Rotates toward target
-        transform.LookAt(projectileRigidbody.velocity);
+        transform.LookAt(transform.position + projectileRigidbody.velocity);
     }
 
     private void OnTriggerEnter(Collider other)
