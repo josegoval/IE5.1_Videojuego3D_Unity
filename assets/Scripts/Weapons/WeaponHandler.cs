@@ -33,8 +33,7 @@ public class WeaponHandler : MonoBehaviour
 
     private void Start()
     {
-        drawTime = drawAnimation.length;
-        timeBetweenShoots = fireRate;
+        ResetDrawRestrictions();
     }
 
     private void Update()
@@ -104,10 +103,15 @@ public class WeaponHandler : MonoBehaviour
     public void DrawWeapon()
     {
         gameObject.SetActive(true);
+        ResetDrawRestrictions();
+        isSelected = true;
+    }
+
+    private void ResetDrawRestrictions()
+    {
         drawTime = drawAnimation.length;
         isReady = false;
         timeBetweenShoots = fireRate;
-        isSelected = true;
     }
 
     public void SaveWeapon()
