@@ -343,14 +343,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 47793285, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
+      propertyPath: drawAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 95315c53a545847d4af7ba95f8c5adec, type: 2}
     - target: {fileID: 265927290, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 830750423, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
+      propertyPath: drawAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: c58455667ac764bf29a99f2e42828839, type: 2}
+    - target: {fileID: 1107237395, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
+      propertyPath: drawAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 6d0368664035441feaf85240c901d614, type: 2}
+    - target: {fileID: 1193882803, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
+      propertyPath: drawAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 397f55a21b50b4e87aa061313f3bd29b, type: 2}
     - target: {fileID: 1658058830, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
-      propertyPath: fireRate
-      value: 0.8
-      objectReference: {fileID: 0}
+      propertyPath: drawAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 19d34ba45a0a748e492153a046608ac8, type: 2}
+    - target: {fileID: 1752813200, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
+      propertyPath: drawAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 373e0655ee0e84c2a8d152930aa8a05e, type: 2}
     - target: {fileID: 8272642082128547889, guid: c7a547976d9d0e045bde4395944591e8,
         type: 3}
       propertyPath: m_Name

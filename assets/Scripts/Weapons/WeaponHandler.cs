@@ -6,7 +6,6 @@ using UnityEngine;
 public class WeaponHandler : MonoBehaviour
 {
     private Animator animator;
-
     // Weapon sounds
     [SerializeField]
     private AudioSource ShootAudioSourceSound, ReloadAudioSourceSound;
@@ -17,9 +16,12 @@ public class WeaponHandler : MonoBehaviour
     public GameObject projectile;
     public Transform projectileSpawnSpot;
     public float fireRate;
+    public AnimationClip drawAnimation;
     // Weapon functionality
     private float timeBetweenShoots;
     private bool isSelected = false;
+    private bool isReady = false;
+    private float drawTime;
         // TODO: AttackPoint
     // Object references
     public GameObject MuzzleFlash;
@@ -31,22 +33,33 @@ public class WeaponHandler : MonoBehaviour
 
     private void Start()
     {
+        drawTime = drawAnimation.length;
         timeBetweenShoots = fireRate;
     }
 
     private void Update()
     {
+        CheckIfIsReadyToShoot();
         // Update time
-        if (isSelected)
+        if (isSelected && isReady)
         {
             timeBetweenShoots += Time.deltaTime;
+        }
+    }
+
+    private void CheckIfIsReadyToShoot()
+    {
+        if (!isReady)
+        {
+            drawTime -= Time.deltaTime;
+            isReady = drawTime <= 0;
         }
     }
 
     public void Shoot(Camera mainCamera)
     {
         
-        if (timeBetweenShoots >= fireRate && PlayShootAnimation())
+        if (isReady && timeBetweenShoots >= fireRate && PlayShootAnimation())
         {
             timeBetweenShoots = 0;
 
@@ -91,7 +104,9 @@ public class WeaponHandler : MonoBehaviour
     public void DrawWeapon()
     {
         gameObject.SetActive(true);
-        timeBetweenShoots = animator.GetCurrentAnimatorStateInfo(0).length;
+        drawTime = drawAnimation.length;
+        isReady = false;
+        timeBetweenShoots = fireRate;
         isSelected = true;
     }
 
