@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    // Object references
     private WeaponManager weaponManager;
     private WeaponHandler currentSelectedWeapon;
     private Animator firstPersonCameraAnimator;
     private GameObject crosshair;
+    public Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -78,7 +80,7 @@ public class PlayerAttack : MonoBehaviour
         // Shoot functionality
         if (Input.GetKey(PlayerControlTags.ACTION_1))
         {
-            currentSelectedWeapon.Shoot();
+            currentSelectedWeapon.Shoot(camera);
         }
         //// Non automatic weapon
         //if (Input.GetKeyDown(PlayerControlTags.ACTION_1))

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class WeaponHandler : MonoBehaviour
     public WeaponFireType weaponFireType;
     public ProjectileType projectileType;
     public WeaponAimType weaponAimType;
+    public GameObject projectile;
+    public Transform projectileSpawnSpot;
     public float fireRate;
     // Weapon functionality
     private float timeBetweenShoots;
@@ -40,14 +43,39 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
-    public void Shoot()
+    public void Shoot(Camera mainCamera)
     {
         
         if (timeBetweenShoots >= fireRate)
         {
             PlayShootAnimation();
             timeBetweenShoots = 0;
+
+            LaunchProjectile(mainCamera);
         }
+    }
+
+    private void LaunchProjectile(Camera mainCamera)
+    {
+        if (projectileType == ProjectileType.NONE) return;
+
+        // Raycast projectile
+        if (projectileType == ProjectileType.BULLET)
+        {
+            // Raycast
+        }
+
+        // Physical projectile
+        if (CanLaunchProjectile())
+        {
+            GameObject projectile = Instantiate(this.projectile, projectileSpawnSpot);
+            projectile.GetComponent<ProjectileHandler>().SpawnAndLauchProjectile(mainCamera);
+        }
+    }
+
+    private bool CanLaunchProjectile()
+    {
+        return projectileType == ProjectileType.SPEAR || projectileType == ProjectileType.ARROW;
     }
 
     public void DrawWeapon()
