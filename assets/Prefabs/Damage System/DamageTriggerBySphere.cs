@@ -12,10 +12,9 @@ public class DamageTriggerBySphere : MonoBehaviour
     void Update()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereRadius, layerMaskToAttack);
-
         if (colliders.Length > 0)
         {
-            print("HIT: " + colliders[0].gameObject.tag);
+            print(gameObject.tag + " HITs: " + colliders[0].gameObject.tag);
 
             DisableDamageTriggerBySphere();
         }
