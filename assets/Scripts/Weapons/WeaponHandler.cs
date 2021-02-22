@@ -152,12 +152,10 @@ public class WeaponHandler : MonoBehaviour
 
     public void EnableDamageTriggerBySphere()
     {
-        print("ATTACKING");
-            damageTriggerBySphere.EnableDamageTriggerBySphere();
+        damageTriggerBySphere.EnableDamageTriggerBySphere();
     }
     public void DisableDamageTriggerBySphere()
     {
-        print("STOP ATTACKING");
         if (damageTriggerBySphere.gameObject.activeInHierarchy)
         {
             damageTriggerBySphere.DisableDamageTriggerBySphere();
