@@ -19,4 +19,5 @@ public class PlayerControlTags {
     // Hierarchy
     public const string LOOK_ROOT_TAG = "Look Root";
     public const string CROSSHAIR_TAG = "Crosshair";
+    public const string PLAYER_TAG = "Player";
 }

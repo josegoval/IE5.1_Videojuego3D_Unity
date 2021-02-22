@@ -9,16 +9,22 @@ public class EnemyController : MonoBehaviour
     // References
     private EnemyAnimationsController enemyAnimationsController;
     private NavMeshAgent navMeshAgent;
+    private GameObject target;
     // Enemy features and functionalities
     private EnemyStates enemyState;
-    private Vector3 previousPosition;
     private float timePatrolling;
     public float maxTimePatrolling = 2f;
-    public float maxPatrollingDistance = 200f;
+    public float maxPatrollingDistance = 20f;
     public float minPatrollingDistance = 5f;
+    public float minChaseDistance = 10f;
+    public float minAttackDistance = 2f;
+    private float timeBetweenAttackToChaseGap = 0f;
+    public float minTimeBetweenAttackToChaseGap = 1f;
+    private float timeBetweenAttacks = 0f;
+    public float minTimeBetweenAttacks = 1.2f;
         // Mobility
-    public float walkingSpeed = 1f;
-    public float runningSpeed = 4f;
+    public float walkingSpeed = 0.5f;
+    public float runningSpeed = 2f;
 
     private void Awake()
     {
@@ -29,23 +35,90 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyState = EnemyStates.PATROLLING;
         timePatrolling = maxTimePatrolling;
+        target = GameObject.FindGameObjectWithTag(PlayerControlTags.PLAYER_TAG);
     }
 
     // Update is called once per frame
     void Update()
     {
+        SetCurrentState();
+        Attack();
+        Chase();
         Patrol();
+    }
+
+    private void SetCurrentState()
+    {
+        if (Vector3.Distance(transform.position, target.transform.position) <= minAttackDistance)
+        {
+            if (enemyState == EnemyStates.ATTACKING) return;
+
+            ResetAttackTime();
+            enemyState = EnemyStates.ATTACKING;
+            return;
+        }
+
+        if (Vector3.Distance(transform.position, target.transform.position) <= minChaseDistance)
+        {
+            // If is comes from attackinig tate
+            if (enemyState == EnemyStates.ATTACKING)
+            {
+                timeBetweenAttackToChaseGap += Time.deltaTime;
+                if (timeBetweenAttackToChaseGap >= minTimeBetweenAttackToChaseGap)
+                {
+                    enemyState = EnemyStates.CHASING;
+                    ResetAttackTime();
+                }
+                return;
+            }
+            // otherwise
+            enemyState = EnemyStates.CHASING;
+            return;
+        }
+
+        if (enemyState == EnemyStates.PATROLLING) return;
+        enemyState = EnemyStates.PATROLLING;
+        timePatrolling = maxTimePatrolling;
+    }
+
+    private void Attack()
+    {
+        if (enemyState == EnemyStates.ATTACKING)
+        {
+            enemyAnimationsController.SetIsWalking(false);
+            enemyAnimationsController.SetIsRunning(false);
+            navMeshAgent.isStopped = true;
+            navMeshAgent.velocity = Vector3.zero;
+
+            timeBetweenAttacks += Time.deltaTime;
+            if (timeBetweenAttacks >= minTimeBetweenAttacks)
+            {
+                ChangeAttackAnimations();
+                ResetAttackTime();
+            }
+        }
+    }
+
+    private void Chase()
+    {
+        if (enemyState == EnemyStates.CHASING)
+        {
+            navMeshAgent.isStopped = false;
+            navMeshAgent.speed = runningSpeed;
+            ChangeChaseAnimations();
+
+            navMeshAgent.SetDestination(target.transform.position);
+        }
     }
 
     private void Patrol()
     {
         if (enemyState == EnemyStates.PATROLLING)
         {
-            ChangePatrolAnimations();
             navMeshAgent.isStopped = false;
             navMeshAgent.speed = walkingSpeed;
+            ChangePatrolAnimations();
 
             timePatrolling += Time.deltaTime;
             if (timePatrolling < maxTimePatrolling) return;
@@ -58,14 +131,28 @@ public class EnemyController : MonoBehaviour
 
     private void ChangePatrolAnimations()
     {
+        enemyAnimationsController.SetIsRunning(false);
         if (navMeshAgent.velocity.sqrMagnitude > 0)
         {
             enemyAnimationsController.SetIsWalking(true);
             return;
         }
         enemyAnimationsController.SetIsWalking(false);
+    }  
+    private void ChangeChaseAnimations()
+    {
+        if (navMeshAgent.velocity.sqrMagnitude > 0)
+        {
+            enemyAnimationsController.SetIsRunning(true);
+            return;
+        }
+        enemyAnimationsController.SetIsRunning(false);
     }
 
+    private void ChangeAttackAnimations()
+    {
+        enemyAnimationsController.TriggerWantToAttack();
+    }
     private void SetNewDestination()
     {
         Vector3 randomPoint = (UnityEngine.Random.insideUnitSphere * maxPatrollingDistance) - new Vector3(minPatrollingDistance, minPatrollingDistance, minPatrollingDistance);
@@ -83,6 +170,11 @@ public class EnemyController : MonoBehaviour
 
     private void ResetPatrolTime()
     {
-        timePatrolling = 0;
+        timePatrolling = 0f;
+    }
+    private void ResetAttackTime()
+    {
+        timeBetweenAttacks = 0f;
+        timeBetweenAttackToChaseGap = 0f;
     }
 }
