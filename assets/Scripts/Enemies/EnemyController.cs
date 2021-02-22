@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private GameObject target;
     public DamageTriggerBySphere damageTriggerBySphere;
+    private EnemySounds enemySounds;
     // Enemy features and functionalities
     private EnemyStates enemyState;
     private float timePatrolling;
@@ -24,6 +25,7 @@ public class EnemyController : MonoBehaviour
     public float minTimeBetweenAttackToChaseGap = 1f;
     private float timeBetweenAttacks = 0f;
     public float minTimeBetweenAttacks = 1.2f;
+    private bool playedSpottedSound = false;
         // Mobility
     public float walkingSpeed = 0.5f;
     public float runningSpeed = 2f;
@@ -32,6 +34,7 @@ public class EnemyController : MonoBehaviour
     {
         enemyAnimationsController = GetComponent<EnemyAnimationsController>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        enemySounds = GetComponent<EnemySounds>();
     }
 
     // Start is called before the first frame update
@@ -57,6 +60,7 @@ public class EnemyController : MonoBehaviour
         {
             if (enemyState == EnemyStates.ATTACKING) return;
 
+            ResetSpottedSound();
             ResetAttackTime();
             enemyState = EnemyStates.ATTACKING;
             minChaseDistance = originalChaseDistance;
@@ -84,6 +88,7 @@ public class EnemyController : MonoBehaviour
         if (enemyState == EnemyStates.PATROLLING) return;
         enemyState = EnemyStates.PATROLLING;
         timePatrolling = maxTimePatrolling;
+        ResetSpottedSound();
     }
 
     private void Attack()
@@ -99,6 +104,7 @@ public class EnemyController : MonoBehaviour
             if (timeBetweenAttacks >= minTimeBetweenAttacks)
             {
                 ChangeAttackAnimations();
+                enemySounds.PlayAttackSound();
                 ResetAttackTime();
             }
         }
@@ -108,6 +114,13 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyState == EnemyStates.CHASING)
         {
+            if (!playedSpottedSound)
+            {
+                // Play spotted sound
+                enemySounds.PlaySpottedSound();
+                playedSpottedSound = true;
+            }
+
             navMeshAgent.isStopped = false;
             navMeshAgent.speed = runningSpeed;
             ChangeChaseAnimations();
@@ -180,6 +193,10 @@ public class EnemyController : MonoBehaviour
     {
         timeBetweenAttacks = 0f;
         timeBetweenAttackToChaseGap = 0f;
+    }
+    private void ResetSpottedSound()
+    {
+        playedSpottedSound = false;
     }
 
     public void EnableDamageTriggerBySphere()
