@@ -6,6 +6,7 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     public float healthPoints = 100f;
+    protected bool isDead = false;
 
     public void ApplyDamage(float damage)
     {
@@ -14,6 +15,7 @@ public class HealthSystem : MonoBehaviour
         if (healthPoints <= 0)
         {
             DyingBehaviour();
+            isDead = true;
         }
     }
 

@@ -121,6 +121,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: c6d213d6f4cf6164294ab593b01f891f, type: 2}
+--- !u!1 &77438195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7476701267069002747, guid: d39d68435d6b0b147abb0798a4e059a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7476701265537737600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &77438196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77438195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b9358e604bcec42b01cc99b70e6f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 100
+  hasDeadAnimation: 1
+  timeToDestroyAfterDeath: 3
+--- !u!1 &172124504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8482672526071537991, guid: 78f94460f51700446ac7e3274f00931d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8482672526673365426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &172124506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172124504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b9358e604bcec42b01cc99b70e6f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 100
+  hasDeadAnimation: 0
+  timeToDestroyAfterDeath: 3
 --- !u!1 &836374449
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +321,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1580920765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8272642082128547889, guid: c7a547976d9d0e045bde4395944591e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8272642081476474955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1580920766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580920765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc348858f5253524794f878c2f043ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 100
+  resetGameTimeAfterDeath: 3
+  sceneToReset: 0_MainScene
 --- !u!1001 &1692346766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -462,6 +525,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2098025453, guid: d39d68435d6b0b147abb0798a4e059a3, type: 3}
+      propertyPath: damagePoints
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7476701267068977115, guid: d39d68435d6b0b147abb0798a4e059a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -531,6 +598,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1330465549, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
+      propertyPath: damagePoints
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8272642082128547889, guid: c7a547976d9d0e045bde4395944591e8,
         type: 3}
       propertyPath: m_Name
@@ -600,6 +671,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1483899092, guid: 78f94460f51700446ac7e3274f00931d, type: 3}
+      propertyPath: damagePoints
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5071241473406779846, guid: 78f94460f51700446ac7e3274f00931d,
         type: 3}
       propertyPath: m_BaseOffset

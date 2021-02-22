@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
     public float maxTimePatrolling = 2f;
     public float maxPatrollingDistance = 20f;
     public float minPatrollingDistance = 5f;
+    private float originalChaseDistance;
     public float minChaseDistance = 10f;
     public float minAttackDistance = 2f;
     private float timeBetweenAttackToChaseGap = 0f;
@@ -37,6 +38,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         timePatrolling = maxTimePatrolling;
+        originalChaseDistance = minChaseDistance;
         target = GameObject.FindGameObjectWithTag(PlayerControlTags.PLAYER_TAG);
     }
 
@@ -57,6 +59,7 @@ public class EnemyController : MonoBehaviour
 
             ResetAttackTime();
             enemyState = EnemyStates.ATTACKING;
+            minChaseDistance = originalChaseDistance;
             return;
         }
 

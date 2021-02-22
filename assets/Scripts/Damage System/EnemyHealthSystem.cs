@@ -9,8 +9,8 @@ public class EnemyHealthSystem : HealthSystem
     private NavMeshAgent navMeshAgent;
     private EnemyController enemyController;
     private BoxCollider boxCollider;
-    private Rigidbody thisRigidbody;
     private EnemyAnimationsController enemyAnimationsController;
+    private Animator animator;
     // Features
     public bool hasDeadAnimation = true;
     public float timeToDestroyAfterDeath = 3f;
@@ -20,26 +20,29 @@ public class EnemyHealthSystem : HealthSystem
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemyController = GetComponent<EnemyController>();
         boxCollider = GetComponent<BoxCollider>();
-        thisRigidbody = GetComponent<Rigidbody>();
         enemyAnimationsController = GetComponent<EnemyAnimationsController>();
+        animator = GetComponent<Animator>();
     }
 
     protected override void DyingBehaviour()
     {
-        Invoke("DestroyEnemy", 3);
+        if (isDead) return;
 
+        // If hasn't dead animation
+        if (!hasDeadAnimation)
+        {
+            //animator.enabled = false;
+            DestroyEnemy();
+            //thisRigidbody.AddTorque(-transform.position * 50f);
+            return;
+        }
+        // If it has dead animation
         navMeshAgent.isStopped = true;
         navMeshAgent.velocity = Vector3.zero;
         enemyController.enabled = false;
         boxCollider.isTrigger = false;
-        // If hasn't dead animation
-        if (!hasDeadAnimation)
-        {
-            thisRigidbody.AddTorque(-transform.position * 50f);
-            return;
-        }
-        // If it has dead animation
         enemyAnimationsController.TriggerIsDead();
+        Invoke("DestroyEnemy", 3);
     }
 
     void DestroyEnemy()

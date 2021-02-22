@@ -14,12 +14,10 @@ public class DamageTriggerBySphere : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, sphereRadius, layerMaskToAttack);
         if (colliders.Length > 0)
         {
-            print(gameObject.tag + " HITs: " + colliders[0].gameObject.tag);
+            colliders[0].gameObject.GetComponent<HealthSystem>().ApplyDamage(damagePoints);
 
             DisableDamageTriggerBySphere();
         }
-
-        // TODO: Set to enemies (board and cannibal) LayerMask to player
     }
 
     public void DisableDamageTriggerBySphere() {

@@ -16,6 +16,7 @@ public class WeaponHandler : MonoBehaviour
     public GameObject projectile;
     public Transform projectileSpawnSpot;
     public float fireRate;
+    public float bulletDamage = 50f;
     public AnimationClip drawAnimation;
     // Weapon functionality
     private float timeBetweenShoots;
@@ -90,10 +91,13 @@ public class WeaponHandler : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit))
         {
-            print("RAYCAST HIT: " + hit.transform.gameObject.ToString());
+            GameObject target = hit.transform.gameObject;
+            if (target.tag == EnemyTags.ENEMY_TAG)
+            {
+                target.GetComponent<HealthSystem>().ApplyDamage(bulletDamage);
+                target.GetComponent<EnemyController>().minChaseDistance = 300f;
+            }
         }
-
-
     }
 
     private bool CanLaunchProjectile()

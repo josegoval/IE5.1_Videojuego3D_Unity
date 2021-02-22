@@ -82,20 +82,5 @@ public class PlayerAttack : MonoBehaviour
         {
             currentSelectedWeapon.Shoot(mainCamera);
         }
-        //// Non automatic weapon
-        //if (Input.GetKeyDown(PlayerControlTags.ACTION_1))
-        //{
-        //    // For aim weapons
-        //    //if (currentWeapon.weaponAimType == WeaponAimType.SELF_AIM)
-        //    //{
-        //    //    return;
-        //    //}
-        //    // The rest
-        //    currentWeapon.PlayShootAnimation();
-        //    if (currentWeapon.projectileType == ProjectileType.BULLET)
-        //    {
-        //        // ShootBullet();
-        //    }
-        //}
     }
 }
