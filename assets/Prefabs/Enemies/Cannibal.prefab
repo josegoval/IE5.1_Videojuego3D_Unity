@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a071fb474f95d1548ba4017f4d7bb1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePoints: 2
+  damagePoints: 50
   sphereRadius: 1
   layerMaskToAttack:
     serializedVersion: 2
@@ -114,9 +114,24 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.8
-  m_BaseOffset: 0
+  m_BaseOffset: 0.01
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &172124506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482672526071537991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b9358e604bcec42b01cc99b70e6f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 100
+  hasDeadAnimation: 0
+  timeToDestroyAfterDeath: 3
 --- !u!1001 &8482672526071441391
 PrefabInstance:
   m_ObjectHideFlags: 0
