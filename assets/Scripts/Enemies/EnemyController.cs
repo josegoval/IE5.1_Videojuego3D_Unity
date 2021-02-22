@@ -17,8 +17,8 @@ public class EnemyController : MonoBehaviour
     public float maxPatrollingDistance = 200f;
     public float minPatrollingDistance = 5f;
         // Mobility
-    public float walkingSpeed = 2f;
-    public float runningSpeed = 5f;
+    public float walkingSpeed = 1f;
+    public float runningSpeed = 4f;
 
     private void Awake()
     {
@@ -37,47 +37,46 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         Patrol();
-        SetIdleIfItIsNotMoving();
-    }
-
-    private void SetIdleIfItIsNotMoving()
-    {
-        if (enemyState != EnemyStates.IDLE && navMeshAgent.velocity != Vector3.zero)
-        {
-            enemyAnimationsController.SetIsRunning(false);
-            enemyAnimationsController.SetIsWalking(false);
-            navMeshAgent.speed = 0f;
-        }
     }
 
     private void Patrol()
     {
         if (enemyState == EnemyStates.PATROLLING)
         {
-            timePatrolling += Time.deltaTime;
-            if (timePatrolling < maxTimePatrolling) return;
-
-            enemyAnimationsController.SetIsWalking(true);
             navMeshAgent.isStopped = false;
             navMeshAgent.speed = walkingSpeed;
 
+            timePatrolling += Time.deltaTime;
+            if (timePatrolling < maxTimePatrolling) return;
+
             // Find a location at any cost
             SetNewDestination();
-
             ResetPatrolTime();
+            ChangePatrolAnimations();
         }
+    }
+
+    private void ChangePatrolAnimations()
+    {
+        if (navMeshAgent.velocity.sqrMagnitude > 0)
+        {
+            enemyAnimationsController.SetIsWalking(true);
+            return;
+        }
+        enemyAnimationsController.SetIsWalking(false);
     }
 
     private void SetNewDestination()
     {
         Vector3 randomPoint = (UnityEngine.Random.insideUnitSphere * maxPatrollingDistance) - new Vector3(minPatrollingDistance, minPatrollingDistance, minPatrollingDistance);
+        Vector3 newDestination = transform.position + randomPoint;
 
         NavMeshHit hit;
-        NavMesh.SamplePosition(randomPoint, out hit, maxPatrollingDistance, -1);
+        NavMesh.SamplePosition(newDestination, out hit, maxPatrollingDistance, -1);
         navMeshAgent.SetDestination(hit.position);
         while (!navMeshAgent.isOnNavMesh)
         {
-            NavMesh.SamplePosition(randomPoint, out hit, maxPatrollingDistance, -1);
+            NavMesh.SamplePosition(newDestination, out hit, maxPatrollingDistance, -1);
             navMeshAgent.SetDestination(hit.position);
         }
     }

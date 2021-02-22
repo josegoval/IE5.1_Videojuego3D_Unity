@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3989b5d5b8ba054c94a6e469e7a9dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimePatrolling: 10
+  maxTimePatrolling: 2
   maxPatrollingDistance: 20
   minPatrollingDistance: 5
   walkingSpeed: 2
@@ -332,8 +332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTimePatrolling: 2
-  maxPatrollingDistance: 20
-  minPatrollingDistance: 5
+  maxPatrollingDistance: 8.25
+  minPatrollingDistance: 1.83
   walkingSpeed: 2
   runningSpeed: 5
 --- !u!1 &1327490504
