@@ -23,7 +23,6 @@ public class WeaponHandler : MonoBehaviour
     private bool isSelected = false;
     private bool isReady = false;
     private float drawTime;
-        // TODO: AttackPoint
     // Object references
     public GameObject MuzzleFlash;
     public DamageTriggerBySphere damageTriggerBySphere;
@@ -164,5 +163,14 @@ public class WeaponHandler : MonoBehaviour
         {
             damageTriggerBySphere.DisableDamageTriggerBySphere();
         }
+    }
+
+    public void ActiveMuzzleFlash()
+    {
+        MuzzleFlash.gameObject.SetActive(true);
+    }
+    public void DeactiveMuzzleFlash()
+    {
+        MuzzleFlash.gameObject.SetActive(false);
     }
 }
