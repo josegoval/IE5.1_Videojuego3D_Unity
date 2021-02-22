@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     private EnemyAnimationsController enemyAnimationsController;
     private NavMeshAgent navMeshAgent;
     private GameObject target;
+    public DamageTriggerBySphere damageTriggerBySphere;
     // Enemy features and functionalities
     private EnemyStates enemyState;
     private float timePatrolling;
@@ -176,5 +177,13 @@ public class EnemyController : MonoBehaviour
     {
         timeBetweenAttacks = 0f;
         timeBetweenAttackToChaseGap = 0f;
+    }
+
+    public void EnableDamageTriggerBySphere()
+    {
+        damageTriggerBySphere.EnableDamageTriggerBySphere();
+    }public void DisableDamageTriggerBySphere()
+    {
+        damageTriggerBySphere.DisableDamageTriggerBySphere();
     }
 }
