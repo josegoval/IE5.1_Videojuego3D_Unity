@@ -29,6 +29,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.42, y: 1.79, z: 0.4}
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &49360416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482672526071537991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3989b5d5b8ba054c94a6e469e7a9dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTimePatrolling: 2
+  maxPatrollingDistance: 20
+  minPatrollingDistance: 5
+  minChaseDistance: 10
+  minAttackDistance: 2
+  minTimeBetweenAttackToChaseGap: 0.3
+  minTimeBetweenAttacks: 0.7
+  walkingSpeed: 0.5
+  runningSpeed: 1.5
+--- !u!114 &49360417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482672526071537991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f898963f49db14887e0fd033c0d989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &5071241473406779846
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -38,7 +71,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8482672526071537991}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.41
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -47,7 +80,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.8
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -61,6 +94,10 @@ PrefabInstance:
     - target: {fileID: 100008, guid: 5eb4e4c4d0b3c8f4bb02a762ec01f6b4, type: 3}
       propertyPath: m_Name
       value: Cannibal
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 5eb4e4c4d0b3c8f4bb02a762ec01f6b4, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5eb4e4c4d0b3c8f4bb02a762ec01f6b4, type: 3}
       propertyPath: m_LocalPosition.x

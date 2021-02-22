@@ -121,45 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: c6d213d6f4cf6164294ab593b01f891f, type: 2}
---- !u!1 &49360415 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8482672526071537991, guid: 78f94460f51700446ac7e3274f00931d,
-    type: 3}
-  m_PrefabInstance: {fileID: 8482672526673365426}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &49360416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49360415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3989b5d5b8ba054c94a6e469e7a9dd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxTimePatrolling: 2
-  maxPatrollingDistance: 20
-  minPatrollingDistance: 5
-  minChaseDistance: 10
-  minAttackDistance: 3
-  minTimeBetweenAttackToChaseGap: 0.3
-  minTimeBetweenAttacks: 0.7
-  walkingSpeed: 0.5
-  runningSpeed: 2
---- !u!114 &49360417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49360415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f898963f49db14887e0fd033c0d989, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &836374449
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,21 +421,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1175909754952750718, guid: 78f94460f51700446ac7e3274f00931d,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5071241473406779846, guid: 78f94460f51700446ac7e3274f00931d,
-        type: 3}
-      propertyPath: m_Height
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5071241473406779846, guid: 78f94460f51700446ac7e3274f00931d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.31
-      objectReference: {fileID: 0}
     - target: {fileID: 8482672526071315815, guid: 78f94460f51700446ac7e3274f00931d,
         type: 3}
       propertyPath: m_LocalPosition.x
