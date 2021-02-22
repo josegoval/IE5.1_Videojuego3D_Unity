@@ -343,6 +343,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 174029326, guid: d39d68435d6b0b147abb0798a4e059a3, type: 3}
+      propertyPath: runningSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 174029326, guid: d39d68435d6b0b147abb0798a4e059a3, type: 3}
+      propertyPath: minAttackDistance
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7476701267068977115, guid: d39d68435d6b0b147abb0798a4e059a3,
         type: 3}
       propertyPath: m_LocalPosition.x
