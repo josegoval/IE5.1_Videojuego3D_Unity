@@ -43,6 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyState == EnemyStates.PATROLLING)
         {
+            ChangePatrolAnimations();
             navMeshAgent.isStopped = false;
             navMeshAgent.speed = walkingSpeed;
 
@@ -52,7 +53,6 @@ public class EnemyController : MonoBehaviour
             // Find a location at any cost
             SetNewDestination();
             ResetPatrolTime();
-            ChangePatrolAnimations();
         }
     }
 
