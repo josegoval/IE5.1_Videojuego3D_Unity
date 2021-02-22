@@ -25,6 +25,7 @@ public class WeaponHandler : MonoBehaviour
         // TODO: AttackPoint
     // Object references
     public GameObject MuzzleFlash;
+    public DamageTriggerBySphere damageTriggerBySphere;
 
     private void Awake()
     {
@@ -149,4 +150,11 @@ public class WeaponHandler : MonoBehaviour
         return animator.GetBool(WeaponsTags.PARAMETER_IS_AIMING);
     }
 
+    public void EnableDamageTriggerBySphere()
+    {
+        damageTriggerBySphere.EnableDamageTriggerBySphere();
+    }public void DisableDamageTriggerBySphere()
+    {
+        damageTriggerBySphere.DisableDamageTriggerBySphere();
+    }
 }

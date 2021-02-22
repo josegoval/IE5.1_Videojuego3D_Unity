@@ -17,7 +17,16 @@ public class DamageTriggerBySphere : MonoBehaviour
         {
             print("HIT: " + colliders[0].gameObject.tag);
 
-            gameObject.SetActive(false);
+            DisableDamageTriggerBySphere();
         }
+
+        // TODO: Set to enemies (board and cannibal) LayerMask to player
+    }
+
+    public void DisableDamageTriggerBySphere() {
+        gameObject.SetActive(false);
+    } 
+    public void EnableDamageTriggerBySphere() {
+        gameObject.SetActive(true);
     }
 }
