@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileHandler : MonoBehaviour
 {
+    //https://forum.unity.com/threads/sampleposition-does-not-really-get-the-nearest-point-on-navmesh.487216/
     //Projectile references
     private Rigidbody projectileRigidbody;
     public GameObject centerOfMass;
