@@ -53,16 +53,9 @@ public class GameRoundsController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        StartNextRound();
     }
 
     public void TryToFinishTheGame()
@@ -131,18 +124,17 @@ public class GameRoundsController : MonoBehaviour
 
     private void SpawnZombies()
     {
-
+        StartCoroutine(SpawnInRandomPoint(zombiesToSpawn, zombiesToSpawnAtOnce, zombiePrefabs, zombieSpawnPoints, secondsBetweenZombieSpawns));
     }
 
     private void SpawnWanderers()
     {
-        throw new NotImplementedException();
+        StartCoroutine(SpawnInRandomPoint(wanderersToSpawn, wanderersToSpawnAtOnce, wandererPrefabs, wandererSpawnPoints, secondsBetweenWanderSpawns));
     }
 
     IEnumerator SpawnInRandomPoint(int enemiesToSpawn, int enemiesToSpawnAtOnce,  GameObject[] prefabs, Transform[] spawnPoints, float timeBetweenSpawns)
     {
         int enemiesLeft = enemiesToSpawn;
-
         for (int i = 0; i < (enemiesToSpawn/enemiesToSpawnAtOnce + 1); i++)
         {
             // First spawn automatically
