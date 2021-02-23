@@ -7,7 +7,7 @@ public class HealthSystem : MonoBehaviour
 {
     public float healthPoints = 100f;
     protected float maxHealthPoints;
-    protected bool isDead = false;
+    public bool isDead = false;
 
     private void Start()
     {

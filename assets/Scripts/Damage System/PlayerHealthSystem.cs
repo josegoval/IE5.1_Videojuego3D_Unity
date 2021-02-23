@@ -14,7 +14,7 @@ public class PlayerHealthSystem : HealthSystem
     public InfoBar healthInfoBar;
     // Features
     public float resetGameTimeAfterDeath = 3f;
-    public string sceneToReset = "0_MainScene";
+    //public string sceneToReset = "0_MainScene";
 
     private void Awake()
     {
@@ -37,23 +37,8 @@ public class PlayerHealthSystem : HealthSystem
         weaponManager.enabled = false;
         playerAttack.enabled = false;
 
-        StopAllEnemies();
-
-        Invoke("ResetGame", resetGameTimeAfterDeath);
+        GameRoundsController.singleton.TryToFinishTheGame();
     }
 
-    private void StopAllEnemies()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(EnemyTags.ENEMY_TAG);
 
-        foreach (GameObject enemy in enemies)
-        {
-            enemy.GetComponent<EnemyController>().enabled = false;
-        }
-    }
-
-    void ResetGame()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToReset);
-    }
 }
