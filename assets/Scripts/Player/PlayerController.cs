@@ -112,17 +112,10 @@ public class PlayerController : MonoBehaviour
 
     private void ManageStamina()
     {
-        float staminaModification;
-        if (isSprinting && characterController.velocity.sqrMagnitude > 0)
-        {
-            // Grieve stamina
-            staminaModification = -Time.deltaTime * staminaLostPerSecond;
-        }
-        else
-        {
-            // Recover stamina
-            staminaModification = Time.deltaTime * staminaRegeneratedPerSecond;
-        }
+        float staminaModification = (isSprinting && characterController.velocity.sqrMagnitude > 0) 
+            ? -staminaLostPerSecond 
+            : staminaRegeneratedPerSecond;
+        staminaModification *= Time.deltaTime;
 
         updateStamina(staminaModification);
     }
