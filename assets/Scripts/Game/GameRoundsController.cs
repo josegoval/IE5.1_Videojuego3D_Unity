@@ -98,7 +98,13 @@ public class GameRoundsController : MonoBehaviour
         //UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToReset);
     }
 
-    public void TryToCompleteRound() {
+    public void RemoveEnemyRequired()
+    {
+        zombiesToCompleteRound--;
+    }
+
+    public void TryToCompleteRound() 
+    {
         if (zombiesToCompleteRound <= 0)
         {
             gameRound++;

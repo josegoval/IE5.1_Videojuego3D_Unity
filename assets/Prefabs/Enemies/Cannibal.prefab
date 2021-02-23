@@ -230,9 +230,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 100
+  isDead: 0
   hasDeadAnimation: 0
   timeToDestroyAfterDeath: 3
   timeDelayForDeadSound: 0.3
+  isValidForCompleteRound: 1
 --- !u!195 &5071241473406779846
 NavMeshAgent:
   m_ObjectHideFlags: 0

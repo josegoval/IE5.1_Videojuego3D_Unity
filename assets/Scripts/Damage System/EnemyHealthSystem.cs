@@ -16,6 +16,7 @@ public class EnemyHealthSystem : HealthSystem
     public bool hasDeadAnimation = true;
     public float timeToDestroyAfterDeath = 3f;
     public float timeDelayForDeadSound = 0.3f;
+    public bool isValidForCompleteRound = false;
 
     private void Awake()
     {
@@ -30,6 +31,13 @@ public class EnemyHealthSystem : HealthSystem
     protected override void DyingBehaviour()
     {
         if (isDead) return;
+
+        // Try to complete the round
+        if (isValidForCompleteRound)
+        {
+            GameRoundsController.singleton.RemoveEnemyRequired();
+        }
+        GameRoundsController.singleton.TryToCompleteRound();
 
         // If hasn't dead animation
         if (!hasDeadAnimation)
