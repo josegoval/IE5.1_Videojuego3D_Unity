@@ -76,29 +76,22 @@ public class PlayerController : MonoBehaviour
     {
         if (!isCrouching)
         {
-            // If it has stamina
-            if (stamina > 0)
+            // If it has stamina Start sprinting
+            if (Input.GetKey(PlayerControlTags.Sprint) && stamina > 0)
             {
-                // Start sprinting
-                if (Input.GetKey(PlayerControlTags.Sprint))
-                {
-                    isSprinting = true;
-                    currentSpeed = sprintSpeed;
-                    playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsSprinting, minStepVolumeSprinting, maxStepVolumeSprinting);
-                    return;
-                }
-                // Stop sprinting
-                if (Input.GetKeyUp(PlayerControlTags.Sprint))
-                {
-                    isSprinting = false;
-                    ChangeValuesToWalk();
-                    return;
-                }
+                isSprinting = true;
+                currentSpeed = sprintSpeed;
+                playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsSprinting, minStepVolumeSprinting, maxStepVolumeSprinting);
                 return;
             }
-            // TODO: CHECK STAMINA WHEN GETS TO ZERO
+            // If stop sprinting
+            if (Input.GetKeyUp(PlayerControlTags.Sprint))
+            {
+                isSprinting = false;
+                ChangeValuesToWalk();
+                return;
+            }
             // If it hasn't stamina
-            isSprinting = false;
             ChangeValuesToWalk();
         }
         
@@ -112,9 +105,14 @@ public class PlayerController : MonoBehaviour
 
     private void ManageStamina()
     {
-        float staminaModification = (isSprinting && characterController.velocity.sqrMagnitude > 0) 
-            ? -staminaLostPerSecond 
-            : staminaRegeneratedPerSecond;
+        bool isMoving = characterController.velocity.sqrMagnitude > 0;
+        // if it's not moving regenerate faster
+        float staminaModification = !isMoving 
+            ? staminaRegeneratedPerSecond * 2 
+            // decrease stamina if it moves while sprinting otherwise regenerate
+            : isSprinting 
+                ? -staminaLostPerSecond
+                : staminaRegeneratedPerSecond;
         staminaModification *= Time.deltaTime;
 
         updateStamina(staminaModification);
@@ -122,8 +120,8 @@ public class PlayerController : MonoBehaviour
 
     private void updateStamina(float newStamina)
     {
-        stamina = UnityEngine.Mathf.Clamp(stamina + newStamina, 0, maxStamina);
-        StaminaInfoBar.updateData(stamina, maxStamina);
+        stamina = Mathf.Clamp(stamina + newStamina, 0, maxStamina);
+        StaminaInfoBar.updateData(Mathf.Round(stamina), maxStamina);
     }
 
     private void Crouch()
@@ -140,6 +138,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // To crouch
+            isSprinting = false;
             LookRoot.transform.localPosition = new Vector3(0f, crouchHeight);
             currentSpeed = crouchSpeed;
             isCrouching = true;
