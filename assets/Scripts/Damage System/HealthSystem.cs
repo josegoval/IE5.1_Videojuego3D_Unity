@@ -6,11 +6,19 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     public float healthPoints = 100f;
+    protected float maxHealthPoints;
     protected bool isDead = false;
 
-    public void ApplyDamage(float damage)
+    private void Start()
+    {
+        maxHealthPoints = healthPoints;
+    }
+
+    public virtual void ApplyDamage(float damage)
     {
         healthPoints -= damage;
+
+        ChangeUIValues();
 
         if (healthPoints <= 0)
         {
@@ -23,4 +31,6 @@ public class HealthSystem : MonoBehaviour
     {
         print("No dying behaviour implemented");
     }
+
+    protected virtual void ChangeUIValues() {}
 }

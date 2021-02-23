@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealthSystem : HealthSystem
 {
@@ -10,6 +11,7 @@ public class PlayerHealthSystem : HealthSystem
     private MouseController mouseController;
     private WeaponManager weaponManager;
     private PlayerAttack playerAttack;
+    public InfoBar healthInfoBar;
     // Features
     public float resetGameTimeAfterDeath = 3f;
     public string sceneToReset = "0_MainScene";
@@ -20,6 +22,11 @@ public class PlayerHealthSystem : HealthSystem
         mouseController = GetComponent<MouseController>();
         weaponManager = GetComponent<WeaponManager>();
         playerAttack = GetComponent<PlayerAttack>();
+    }
+
+    protected override void ChangeUIValues()
+    {
+        healthInfoBar.updateData(healthPoints, maxHealthPoints);
     }
 
     protected override void DyingBehaviour()
