@@ -16,7 +16,7 @@ public class WeaponHandler : MonoBehaviour
     public GameObject projectile;
     public Transform projectileSpawnSpot;
     public float fireRate;
-    public float bulletDamage = 50f;
+    public float projectileDamage = 50f;
     public AnimationClip drawAnimation;
     // Weapon functionality
     private float timeBetweenShoots;
@@ -81,7 +81,7 @@ public class WeaponHandler : MonoBehaviour
         if (CanLaunchProjectile())
         {
             GameObject projectile = Instantiate(this.projectile, projectileSpawnSpot);
-            projectile.GetComponent<ProjectileHandler>().SpawnAndLauchProjectile(mainCamera);
+            projectile.GetComponent<ProjectileHandler>().SpawnAndLauchProjectile(mainCamera, projectileDamage);
         }
     }
 
@@ -93,7 +93,7 @@ public class WeaponHandler : MonoBehaviour
             GameObject target = hit.transform.gameObject;
             if (target.tag == EnemyTags.ENEMY_TAG)
             {
-                target.GetComponent<HealthSystem>().ApplyDamage(bulletDamage);
+                target.GetComponent<HealthSystem>().ApplyDamage(projectileDamage);
                 target.GetComponent<EnemyController>().minChaseDistance = 300f;
             }
         }

@@ -12,6 +12,7 @@ public class ProjectileHandler : MonoBehaviour
     public float velocity = 20f;
     public float despawnTime = 3f;
     public float destroyTime = 1f;
+    protected float proyectileDamage;
 
     private void Awake()
     {
@@ -30,8 +31,10 @@ public class ProjectileHandler : MonoBehaviour
         Destroy(gameObject, destroyTime);
     }
 
-    public void SpawnAndLauchProjectile(Camera mainCamera)
+    public void SpawnAndLauchProjectile(Camera mainCamera, float projectileDamage)
     {
+        // Add damage
+        this.proyectileDamage = projectileDamage;
         // Remove parent to prevent rotate with the user
         transform.SetParent(null);
         // Changes velocity
@@ -42,6 +45,10 @@ public class ProjectileHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("This projectile hits: " + other.ToString());
+        if (other.gameObject.tag == EnemyTags.ENEMY_TAG)
+        {
+            other.gameObject.GetComponent<HealthSystem>().ApplyDamage(proyectileDamage);
+            Destroy(gameObject);
+        }
     }
 }
