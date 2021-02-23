@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     // GameObjects references
     private CharacterController characterController;
     public GameObject LookRoot;
+    public InfoBar StaminaInfoBar;
     // Movement
     private Vector3 moveTo;
     public float sprintSpeed = 8f;
@@ -15,8 +16,14 @@ public class PlayerController : MonoBehaviour
     public float crouchSpeed = 1.5f;
     [SerializeField]
     private float currentSpeed;
+    // Stamina
+    public float stamina = 100f;
+    private float maxStamina;
+    public float staminaLostPerSecond = 10f;
+    public float staminaRegeneratedPerSecond = 5f;
     // States
     private bool isCrouching = false;
+    private bool isSprinting = false;
     // Height
     private float standHeight = 1.6f;
     private float crouchHeight = 1f;
@@ -52,6 +59,8 @@ public class PlayerController : MonoBehaviour
         currentSpeed = normalSpeed;
         // Set default sounds
         setWalkingSounds();
+        // Set default stamina
+        maxStamina = stamina;
     }
 
     // Update is called once per frame
@@ -60,27 +69,68 @@ public class PlayerController : MonoBehaviour
         Sprint();
         Crouch();
         MovePlayer();
+        ManageStamina();
     }
 
     private void Sprint()
     {
         if (!isCrouching)
         {
-            // Start sprinting
-            if (Input.GetKey(PlayerControlTags.Sprint))
+            // If it has stamina
+            if (stamina > 0)
             {
-                currentSpeed = sprintSpeed;
-                playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsSprinting, minStepVolumeSprinting, maxStepVolumeSprinting);
+                // Start sprinting
+                if (Input.GetKey(PlayerControlTags.Sprint))
+                {
+                    isSprinting = true;
+                    currentSpeed = sprintSpeed;
+                    playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsSprinting, minStepVolumeSprinting, maxStepVolumeSprinting);
+                    return;
+                }
+                // Stop sprinting
+                if (Input.GetKeyUp(PlayerControlTags.Sprint))
+                {
+                    isSprinting = false;
+                    ChangeValuesToWalk();
+                    return;
+                }
                 return;
             }
-            // Stop sprinting
-            if (Input.GetKeyUp(PlayerControlTags.Sprint))
-            {
-                currentSpeed = normalSpeed;
-                setWalkingSounds();
-                return;
-            }
+            // TODO: CHECK STAMINA WHEN GETS TO ZERO
+            // If it hasn't stamina
+            isSprinting = false;
+            ChangeValuesToWalk();
         }
+        
+    }
+
+    private void ChangeValuesToWalk()
+    {
+        currentSpeed = normalSpeed;
+        setWalkingSounds();
+    }
+
+    private void ManageStamina()
+    {
+        float staminaModification;
+        if (isSprinting && characterController.velocity.sqrMagnitude > 0)
+        {
+            // Grieve stamina
+            staminaModification = -Time.deltaTime * staminaLostPerSecond;
+        }
+        else
+        {
+            // Recover stamina
+            staminaModification = Time.deltaTime * staminaRegeneratedPerSecond;
+        }
+
+        updateStamina(staminaModification);
+    }
+
+    private void updateStamina(float newStamina)
+    {
+        stamina = UnityEngine.Mathf.Clamp(stamina + newStamina, 0, maxStamina);
+        StaminaInfoBar.updateData(stamina, maxStamina);
     }
 
     private void Crouch()
@@ -91,9 +141,8 @@ public class PlayerController : MonoBehaviour
             if (isCrouching)
             {
                 LookRoot.transform.localPosition = new Vector3(0f, standHeight);
-                currentSpeed = normalSpeed;
                 isCrouching = false;
-                setWalkingSounds();
+                ChangeValuesToWalk();
                 return;
             }
 
