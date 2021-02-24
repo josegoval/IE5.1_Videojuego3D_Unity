@@ -55,7 +55,7 @@ public class EnemyHealthSystem : HealthSystem
         boxCollider.isTrigger = false;
         enemyAnimationsController.TriggerIsDead();
         StartCoroutine(PlayDelayedDeadSound());
-        Invoke("DestroyEnemy", 3);
+        Invoke("DestroyEnemy",timeToDestroyAfterDeath);
     }
 
     void DestroyEnemy()
