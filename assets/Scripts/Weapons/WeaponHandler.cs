@@ -94,7 +94,6 @@ public class WeaponHandler : MonoBehaviour
             if (target.tag == EnemyTags.ENEMY_TAG)
             {
                 target.GetComponent<HealthSystem>().ApplyDamage(projectileDamage);
-                target.GetComponent<EnemyController>().minChaseDistance = 300f;
             }
         }
     }

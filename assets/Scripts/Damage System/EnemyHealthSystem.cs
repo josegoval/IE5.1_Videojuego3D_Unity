@@ -28,16 +28,22 @@ public class EnemyHealthSystem : HealthSystem
         enemySounds = GetComponent<EnemySounds>();
     }
 
+    public override void ApplyDamage(float damage)
+    {
+        base.ApplyDamage(damage);
+        enemyController.minChaseDistance = 300f;
+    }
+
     protected override void DyingBehaviour()
     {
         if (isDead) return;
 
         // Try to complete the round
-        if (isValidForCompleteRound)
-        {
-            GameRoundsController.singleton.RemoveEnemyRequired();
-        }
-        GameRoundsController.singleton.TryToCompleteRound();
+        //if (isValidForCompleteRound)
+        //{
+        //    GameRoundsController.singleton.RemoveEnemyRequired();
+        //}
+        //GameRoundsController.singleton.TryToCompleteRound();
 
         // If hasn't dead animation
         if (!hasDeadAnimation)
