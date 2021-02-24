@@ -37,8 +37,15 @@ public class PlayerHealthSystem : HealthSystem
         weaponManager.enabled = false;
         playerAttack.enabled = false;
 
+        unlockMouse();
+
         GameRoundsController.singleton.TryToFinishTheGame();
     }
 
+    private void unlockMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 
 }

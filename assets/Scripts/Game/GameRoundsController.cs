@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameRoundsController : MonoBehaviour
 {
@@ -46,6 +47,11 @@ public class GameRoundsController : MonoBehaviour
     public RoundInfoUI roundInfoUI;
     [HideInInspector]
     public HealthSystem[] playersHealth;
+    public GameObject crosshair;
+    public GameObject playerUI;
+    public GameObject roundUI;
+    public GameObject endscreenMenu;
+    public TMPro.TextMeshProUGUI endscreenRoundInfo;
 
     private void Awake()
     {
@@ -79,8 +85,14 @@ public class GameRoundsController : MonoBehaviour
 
     private void FinishTheGame()
     {
+        gameOver = true;
         StopAllCoroutines();
         StopAllEnemies();
+        crosshair.SetActive(false);
+        playerUI.SetActive(false);
+        roundUI.SetActive(false);
+        endscreenMenu.SetActive(true);
+        endscreenRoundInfo.text = gameRound + " ROUNDS";
         // TODO: display endscreen
         // TODO: display buttons to try again or exit
     }
