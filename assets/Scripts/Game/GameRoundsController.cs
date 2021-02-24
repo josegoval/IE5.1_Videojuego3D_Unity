@@ -42,6 +42,8 @@ public class GameRoundsController : MonoBehaviour
     [SerializeField]
     private Transform[] wandererSpawnPoints;
     // References
+    [Header("References")]
+    public RoundInfoUI roundInfoUI;
     [HideInInspector]
     public HealthSystem[] playersHealth;
 
@@ -101,6 +103,7 @@ public class GameRoundsController : MonoBehaviour
     public void RemoveEnemyRequired()
     {
         zombiesToCompleteRound--;
+        roundInfoUI.ChangeEnemyCounter(zombiesToCompleteRound);
     }
 
     public void TryToCompleteRound() 
@@ -123,6 +126,9 @@ public class GameRoundsController : MonoBehaviour
         wanderersToSpawnAtOnce = howManyWanderersToSpawnAtOnce + roundMultiplier * wanderersIncrementToSpawnAtOnce;
         // Round requirements
         zombiesToCompleteRound = zombiesToSpawn;
+        // Round UI
+        roundInfoUI.ChangeRound(gameRound);
+        roundInfoUI.ChangeEnemyCounter(zombiesToCompleteRound);
         // Start spawning
         SpawnZombies();
         SpawnWanderers();
@@ -143,7 +149,9 @@ public class GameRoundsController : MonoBehaviour
         int enemiesLeft = enemiesToSpawn;
         for (int i = 0; i < (enemiesToSpawn/enemiesToSpawnAtOnce + 1); i++)
         {
-            // First spawn automatically
+            // Wait for each bulk spawn
+            yield return new WaitForSeconds(timeBetweenSpawns);
+            // Spawn bulk
             for (int j = 0; j < enemiesToSpawnAtOnce; j++)
             {
                 // Instantiate a random prefab in a random point
@@ -159,9 +167,6 @@ public class GameRoundsController : MonoBehaviour
                     yield break;
                 }
             }
-
-            // Then wait for each bulk spawn
-            yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
 }
