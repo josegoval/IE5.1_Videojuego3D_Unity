@@ -300,7 +300,7 @@ MonoBehaviour:
     type: 3}
   projectileSpawnSpot: {fileID: 1862502045}
   fireRate: 2
-  projectileDamage: 50
+  projectileDamage: 70
   drawAnimation: {fileID: 7400000, guid: 397f55a21b50b4e87aa061313f3bd29b, type: 2}
   MuzzleFlash: {fileID: 0}
   damageTriggerBySphere: {fileID: 0}
@@ -516,7 +516,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   projectileSpawnSpot: {fileID: 0}
   fireRate: 1.7
-  projectileDamage: 50
+  projectileDamage: 100
   drawAnimation: {fileID: 7400000, guid: 95315c53a545847d4af7ba95f8c5adec, type: 2}
   MuzzleFlash: {fileID: 8271126014677345901}
   damageTriggerBySphere: {fileID: 0}
@@ -670,9 +670,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 100
+  isDead: 0
   healthInfoBar: {fileID: 0}
   resetGameTimeAfterDeath: 3
-  sceneToReset: 0_MainScene
 --- !u!82 &1107237396
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1291,7 +1291,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   projectileSpawnSpot: {fileID: 0}
   fireRate: 0.2
-  projectileDamage: 10
+  projectileDamage: 15
   drawAnimation: {fileID: 7400000, guid: c58455667ac764bf29a99f2e42828839, type: 2}
   MuzzleFlash: {fileID: 8271126013902418311}
   damageTriggerBySphere: {fileID: 0}

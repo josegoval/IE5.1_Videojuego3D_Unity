@@ -17,6 +17,7 @@ public class HealthSystem : MonoBehaviour
     public virtual void ApplyDamage(float damage)
     {
         healthPoints -= damage;
+        healthPoints = Mathf.Clamp(healthPoints, 0, maxHealthPoints);
 
         ChangeUIValues();
 

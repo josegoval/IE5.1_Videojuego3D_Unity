@@ -1137,6 +1137,10 @@ PrefabInstance:
       propertyPath: StaminaInfoBar
       value: 
       objectReference: {fileID: 1204669968}
+    - target: {fileID: 1193882803, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
+      propertyPath: projectileDamage
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 1580920766, guid: c7a547976d9d0e045bde4395944591e8, type: 3}
       propertyPath: healthInfoBar
       value: 
