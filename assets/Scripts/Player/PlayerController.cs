@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     private float crouchHeight = 1f;
     // Jump
     public float jumpForce = 10f;
+    // Mobile buttons
+    private bool isPressingJumpButton = false;
+    private bool isPressingSprintButton = false;
+    private bool isPressingCrouchButton = false;
     // Gravity
     public float gravity = -20f;
     // TODO: Clamp verticalVelocity
@@ -76,23 +80,20 @@ public class PlayerController : MonoBehaviour
     {
         if (!isCrouching)
         {
-            // If it has stamina Start sprinting
-            if (Input.GetKey(PlayerControlTags.Sprint) && stamina > 0)
+            // Check inputs
+            CheckSprintAction();
+            if (isSprinting)
             {
-                isSprinting = true;
-                currentSpeed = sprintSpeed;
-                playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsSprinting, minStepVolumeSprinting, maxStepVolumeSprinting);
-                return;
+                // If it has stamina
+                if (stamina > 0)
+                {
+                    ChangeValuesToSprint();
+                    return;
+                }
             }
-            // If stop sprinting
-            if (Input.GetKeyUp(PlayerControlTags.Sprint))
-            {
-                isSprinting = false;
-                ChangeValuesToWalk();
-                return;
-            }
-            // If it hasn't stamina
+            // If it hasn't stamina or stop sprinting
             ChangeValuesToWalk();
+            return;
         }
         
     }
@@ -103,6 +104,12 @@ public class PlayerController : MonoBehaviour
         setWalkingSounds();
     }
 
+    private void ChangeValuesToSprint()
+    {
+        currentSpeed = sprintSpeed;
+        playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsSprinting, minStepVolumeSprinting, maxStepVolumeSprinting);
+    }
+
     private void ManageStamina()
     {
         bool isMoving = characterController.velocity.sqrMagnitude > 0;
@@ -110,7 +117,7 @@ public class PlayerController : MonoBehaviour
         float staminaModification = !isMoving 
             ? staminaRegeneratedPerSecond * 2 
             // decrease stamina if it moves while sprinting otherwise regenerate
-            : isSprinting 
+            : isSprinting && !isCrouching
                 ? -staminaLostPerSecond
                 : staminaRegeneratedPerSecond;
         staminaModification *= Time.deltaTime;
@@ -126,29 +133,34 @@ public class PlayerController : MonoBehaviour
 
     private void Crouch()
     {
-        if (Input.GetKeyDown(PlayerControlTags.Crouch))
+        CheckCrouchAction();
+        // To stand up
+        if (isCrouching)
         {
-            // To stand up
-            if (isCrouching)
-            {
-                LookRoot.transform.localPosition = new Vector3(0f, standHeight);
-                isCrouching = false;
-                ChangeValuesToWalk();
-                return;
-            }
-
-            // To crouch
-            isSprinting = false;
-            LookRoot.transform.localPosition = new Vector3(0f, crouchHeight);
-            currentSpeed = crouchSpeed;
-            isCrouching = true;
-            playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsCrouching, minStepVolumeCrouching, maxStepVolumeCrouching);
+            ChangeValuesToStopCrouching();
+            return;
         }
+        // To crouch
+        //isSprinting = false;
+        ChangeValuesToCrouch();
+    }
+
+    private void ChangeValuesToCrouch()
+    {
+        LookRoot.transform.localPosition = new Vector3(0f, crouchHeight);
+        currentSpeed = crouchSpeed;
+        playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsCrouching, minStepVolumeCrouching, maxStepVolumeCrouching);
+    }
+
+    private void ChangeValuesToStopCrouching()
+    {
+        LookRoot.transform.localPosition = new Vector3(0f, standHeight);
+        ChangeValuesToWalk();
     }
 
     private void MovePlayer()
     {
-        moveTo = new Vector3(Input.GetAxis(PlayerControlTags.HORIZONTAL), 0f, Input.GetAxis(PlayerControlTags.VERTICAL));
+        moveTo = GetMovementVector();
         moveTo = transform.TransformDirection(moveTo);
         moveTo *= currentSpeed * Time.deltaTime;
 
@@ -167,14 +179,62 @@ public class PlayerController : MonoBehaviour
 
     private void JumpBehaviour()
     {
-        if (characterController.isGrounded && Input.GetKeyDown(PlayerControlTags.JUMP))
+        if (characterController.isGrounded && IsPressingJumpAction())
         {
             verticalVelocity = jumpForce;
+            ChangeIsPressingJumpButton(false);
         }
     }
 
     private void setWalkingSounds()
     {
         playerFootsteps.ChangeAudioValues(minTimeBetweenFootsepsWalking, minStepVolumeWalking, maxStepVolumeWalking);
+    }
+
+    // Input checks
+    protected virtual Vector3 GetMovementVector()
+    {
+        return new Vector3(Input.GetAxis(PlayerControlTags.HORIZONTAL), 0f, Input.GetAxis(PlayerControlTags.VERTICAL));
+    }
+
+    protected virtual bool IsPressingJumpAction()
+    {
+        return Input.GetKeyDown(PlayerControlTags.JUMP)|| isPressingJumpButton;
+    }
+
+    protected virtual void CheckSprintAction()
+    {
+        if (Input.GetKey(PlayerControlTags.Sprint) || isPressingSprintButton)
+        {
+            isSprinting = true;
+        }
+
+        if (Input.GetKeyUp(PlayerControlTags.Sprint) || !isPressingSprintButton)
+        {
+            isSprinting = false;
+        }
+    }
+    
+    protected virtual void CheckCrouchAction()
+    {
+        // PC
+        if (Input.GetKeyDown(PlayerControlTags.Crouch))
+        {
+            isCrouching = !isCrouching;
+            return;
+        }
+        // Mobile
+        isCrouching = isPressingCrouchButton;
+    }
+
+    // Buttons
+    // Change pressing buttons
+    public void ChangeIsPressingJumpButton(bool value)
+    {
+        isPressingJumpButton = value;
+    }
+    public void ChangeIsPressingSprintButton(bool value)
+    {
+        isPressingSprintButton = value;
     }
 }
