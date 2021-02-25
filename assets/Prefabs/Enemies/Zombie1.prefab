@@ -1310,7 +1310,7 @@ MonoBehaviour:
   minTimeBetweenAttackToChaseGap: 1.4
   minTimeBetweenAttacks: 2
   walkingSpeed: 0.5
-  runningSpeed: 1
+  runningSpeed: 1.6
 --- !u!114 &8489320313987638250
 MonoBehaviour:
   m_ObjectHideFlags: 0

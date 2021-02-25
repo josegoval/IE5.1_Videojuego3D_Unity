@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 3256478225057213750, guid: 9481c848d168ef34eab2b14727ef557d,
         type: 3}
       propertyPath: m_Name
-      value: Zombie1 (3)
+      value: Zombie4
       objectReference: {fileID: 0}
     - target: {fileID: 4383855812913292674, guid: 9481c848d168ef34eab2b14727ef557d,
         type: 3}
@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 8040871101240038440, guid: 9481c848d168ef34eab2b14727ef557d,
         type: 3}
       propertyPath: runningSpeed
-      value: 0.67
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8040871101240038440, guid: 9481c848d168ef34eab2b14727ef557d,
         type: 3}
