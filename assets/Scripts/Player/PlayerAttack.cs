@@ -32,12 +32,12 @@ public class PlayerAttack : MonoBehaviour
     {
         if (currentSelectedWeapon.weaponAimType != WeaponAimType.NONE)
         {
-            if (Input.GetKey(PlayerControlTags.ACTION_2))
+            if (IsPressingAimAction())
             {
                 StartZooming();
             }
 
-            if (Input.GetKeyUp(PlayerControlTags.ACTION_2))
+            if (IsReleasingShootAction())
             {
                 StopZooming();
             }
@@ -75,12 +75,25 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    protected virtual void CheckShoot()
+    public void CheckShoot()
     {
         // Shoot functionality
-        if (Input.GetKey(PlayerControlTags.ACTION_1))
+        if (IsPressingShootAction())
         {
             currentSelectedWeapon.Shoot(mainCamera);
         }
+    }
+
+    protected virtual bool IsPressingShootAction()
+    {
+        return Input.GetKey(PlayerControlTags.ACTION_1);
+    }
+    protected virtual bool IsPressingAimAction()
+    {
+        return Input.GetKey(PlayerControlTags.ACTION_2);
+    }
+    protected virtual bool IsReleasingShootAction()
+    {
+        return Input.GetKeyUp(PlayerControlTags.ACTION_2);
     }
 }

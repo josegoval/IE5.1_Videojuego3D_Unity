@@ -5,19 +5,30 @@ using UnityEngine;
 
 public class MobilePlayerAttack : PlayerAttack
 {
+    private bool isPressingAimButton = false;
     private bool isPressingShootButton = false;
 
-    protected override void CheckShoot()
+    protected override bool IsPressingShootAction()
     {
-        // Shoot functionality
-        if (isPressingShootButton)
-        {
-            currentSelectedWeapon.Shoot(mainCamera);
-        }
+        return isPressingShootButton;
     }
 
+    protected override bool IsPressingAimAction()
+    {
+        return isPressingAimButton;
+    }
+    protected override bool IsReleasingShootAction()
+    {
+        return !isPressingAimButton;
+    }
+
+    public void ToggleIsPressingAimButton()
+    {
+        isPressingAimButton = !isPressingAimButton;
+    }
     public void ToggleIsPressingShootButton()
     {
         isPressingShootButton = !isPressingShootButton;
     }
+
 }
