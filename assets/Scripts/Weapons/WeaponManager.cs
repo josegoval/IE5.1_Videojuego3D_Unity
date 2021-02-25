@@ -7,6 +7,8 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private WeaponHandler[] weaponHandlers;
     private int currentSelectedWeapon = 0;
+    private bool previousWeapon = false;
+    private bool nextWeapon = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +25,16 @@ public class WeaponManager : MonoBehaviour
     private void checkNewWeapon()
     {
         // Mouse wheel input
-        if (Input.mouseScrollDelta.y > 0)
+        if (Input.mouseScrollDelta.y > 0 || nextWeapon)
         {
             changeWeapon(currentSelectedWeapon - 1);
+            ChangeNextWeapon(false);
             return;
         }
-        if (Input.mouseScrollDelta.y < 0)
+        if (Input.mouseScrollDelta.y < 0 || previousWeapon)
         {
             changeWeapon(currentSelectedWeapon + 1);
+            ChangePreviousWeapon(false);
             return;
         }
 
@@ -61,4 +65,12 @@ public class WeaponManager : MonoBehaviour
     }
 
     public WeaponHandler getCurrentSelectedWeaponHandler() { return weaponHandlers[currentSelectedWeapon]; }
+
+    public void ChangeNextWeapon(bool value)
+    {
+        nextWeapon = value;
+    }public void ChangePreviousWeapon(bool value)
+    {
+        previousWeapon = value;
+    }
 }
