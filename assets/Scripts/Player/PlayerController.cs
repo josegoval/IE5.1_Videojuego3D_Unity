@@ -134,15 +134,20 @@ public class PlayerController : MonoBehaviour
     private void Crouch()
     {
         CheckCrouchAction();
-        // To stand up
+        // To crouch
         if (isCrouching)
         {
-            ChangeValuesToStopCrouching();
+            //isSprinting = false;
+            ChangeValuesToCrouch();
             return;
         }
-        // To crouch
-        //isSprinting = false;
-        ChangeValuesToCrouch();
+        // To stand up
+        ChangeValuesToStopCrouching();
+        if (!isSprinting)
+        {
+            ChangeValuesToWalk();
+            return;
+        }
     }
 
     private void ChangeValuesToCrouch()
@@ -155,7 +160,6 @@ public class PlayerController : MonoBehaviour
     private void ChangeValuesToStopCrouching()
     {
         LookRoot.transform.localPosition = new Vector3(0f, standHeight);
-        ChangeValuesToWalk();
     }
 
     private void MovePlayer()
@@ -207,24 +211,23 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(PlayerControlTags.Sprint) || isPressingSprintButton)
         {
             isSprinting = true;
+            return;
         }
 
         if (Input.GetKeyUp(PlayerControlTags.Sprint) || !isPressingSprintButton)
         {
             isSprinting = false;
+            return;
         }
     }
     
     protected virtual void CheckCrouchAction()
     {
-        // PC
-        if (Input.GetKeyDown(PlayerControlTags.Crouch))
+        if (Input.GetKeyDown(PlayerControlTags.Crouch) || isPressingCrouchButton)
         {
             isCrouching = !isCrouching;
             return;
         }
-        // Mobile
-        isCrouching = isPressingCrouchButton;
     }
 
     // Buttons

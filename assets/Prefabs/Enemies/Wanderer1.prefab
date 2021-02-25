@@ -1258,8 +1258,8 @@ MonoBehaviour:
   minPatrollingDistance: 5
   minChaseDistance: 4
   minAttackDistance: 2
-  minTimeBetweenAttackToChaseGap: 1.5
-  minTimeBetweenAttacks: 1.2
+  minTimeBetweenAttackToChaseGap: 2
+  minTimeBetweenAttacks: 1.5
   walkingSpeed: 0.2
   runningSpeed: 1.7
 --- !u!1 &4611627559464947924

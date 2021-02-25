@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 3996843255566441207, guid: 4a165613a89882946be781c0aa6fc90f,
         type: 3}
       propertyPath: m_Name
-      value: Zombie1 (1)
+      value: Zombie2
       objectReference: {fileID: 0}
     - target: {fileID: 3996843255566441207, guid: 4a165613a89882946be781c0aa6fc90f,
         type: 3}
@@ -101,6 +101,16 @@ PrefabInstance:
         type: 3}
       propertyPath: walkingSpeed
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489320313987638249, guid: 4a165613a89882946be781c0aa6fc90f,
+        type: 3}
+      propertyPath: minTimeBetweenAttacks
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489320313987638249, guid: 4a165613a89882946be781c0aa6fc90f,
+        type: 3}
+      propertyPath: minTimeBetweenAttackToChaseGap
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8489320313987638252, guid: 4a165613a89882946be781c0aa6fc90f,
         type: 3}

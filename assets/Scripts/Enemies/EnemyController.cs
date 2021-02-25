@@ -117,7 +117,7 @@ public class EnemyController : MonoBehaviour
             if (!playedSpottedSound)
             {
                 // Play spotted sound
-                enemySounds.PlaySpottedSound();
+                //enemySounds.PlaySpottedSound();
                 playedSpottedSound = true;
             }
 
