@@ -23,6 +23,7 @@ public class MouseController : MonoBehaviour
     {
         // Lock cursor at the beginning
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -44,10 +45,12 @@ public class MouseController : MonoBehaviour
             if (Cursor.lockState == CursorLockMode.Locked)
             {
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 return;
             }
             // Unlock mouse
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
