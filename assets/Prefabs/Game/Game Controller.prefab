@@ -670,14 +670,19 @@ MonoBehaviour:
   howManyZombiesToSpawnAtOnce: 4
   zombiesIncrementToSpawnAtOnce: 2
   zombiePrefabs:
-  - {fileID: 8482672526071537991, guid: 78f94460f51700446ac7e3274f00931d, type: 3}
+  - {fileID: 3996843255566441207, guid: 4a165613a89882946be781c0aa6fc90f, type: 3}
+  - {fileID: 3153577816958309446, guid: 353df814e79723146a7adb0eb75644bf, type: 3}
+  - {fileID: 3256478225057213750, guid: 9481c848d168ef34eab2b14727ef557d, type: 3}
+  - {fileID: 6165373802382062816, guid: 1f2df9a584c5e0b4c8ad9bc9f3779feb, type: 3}
   totalWanderersInTheInitialRound: 1
   secondsBetweenWanderSpawns: 3
   totalWanderersToIncrementPerRound: 2
   howManyWanderersToSpawnAtOnce: 1
   wanderersIncrementToSpawnAtOnce: 1
   wandererPrefabs:
-  - {fileID: 7476701267069002747, guid: d39d68435d6b0b147abb0798a4e059a3, type: 3}
+  - {fileID: 4611627559464947922, guid: 80bc9f36613a79647b6dc029bbd27fd1, type: 3}
+  - {fileID: 8994623613595368008, guid: 465afae7cd91e7e4d9613c49dce2a1ec, type: 3}
+  - {fileID: 4356996353628170295, guid: dcfdf7d366fcd7140998899360603d6e, type: 3}
   zombieSpawnPoints:
   - {fileID: 827782892}
   - {fileID: 886759337}
@@ -688,3 +693,8 @@ MonoBehaviour:
   - {fileID: 1308518940}
   roundInfoUI: {fileID: 955711485}
   playersHealth: []
+  crosshair: {fileID: 0}
+  playerUI: {fileID: 0}
+  roundUI: {fileID: 955711479}
+  endscreenMenu: {fileID: 0}
+  endscreenRoundInfo: {fileID: 0}

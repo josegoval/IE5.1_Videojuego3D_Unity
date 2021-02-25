@@ -168,8 +168,8 @@ public class GameRoundsController : MonoBehaviour
             {
                 // Instantiate a random prefab in a random point
                 Instantiate(
-                    prefabs[UnityEngine.Random.Range(0, prefabs.Length - 1)], 
-                    spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length - 1)].position, 
+                    prefabs[UnityEngine.Random.Range(0, prefabs.Length)], 
+                    spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position, 
                     Quaternion.identity
                 );
                 enemiesLeft--;
