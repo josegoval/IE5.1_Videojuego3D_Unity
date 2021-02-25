@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     // GameObjects references
     private CharacterController characterController;
+    [Header("References")]
     public GameObject LookRoot;
     public InfoBar StaminaInfoBar;
     // Movement
     private Vector3 moveTo;
+    [Header("General Setup")]
     public float sprintSpeed = 8f;
     public float normalSpeed = 4f;
     public float crouchSpeed = 1.5f;
@@ -22,17 +24,13 @@ public class PlayerController : MonoBehaviour
     public float staminaLostPerSecond = 10f;
     public float staminaRegeneratedPerSecond = 5f;
     // States
-    private bool isCrouching = false;
-    private bool isSprinting = false;
+    protected bool isCrouching = false;
+    protected bool isSprinting = false;
     // Height
     private float standHeight = 1.6f;
     private float crouchHeight = 1f;
     // Jump
     public float jumpForce = 10f;
-    // Mobile buttons
-    private bool isPressingJumpButton = false;
-    private bool isPressingSprintButton = false;
-    private bool isPressingCrouchButton = false;
     // Gravity
     public float gravity = -20f;
     // TODO: Clamp verticalVelocity
@@ -40,6 +38,7 @@ public class PlayerController : MonoBehaviour
     // Sounds and Audio
         // Footsteps
     private PlayerFootsteps playerFootsteps;
+    [Header("Audio Setup")]
     public float minTimeBetweenFootsepsSprinting = 0.25f;
     public float minStepVolumeSprinting = 0.8f;
     public float maxStepVolumeSprinting = 1f;
@@ -203,18 +202,18 @@ public class PlayerController : MonoBehaviour
 
     protected virtual bool IsPressingJumpAction()
     {
-        return Input.GetKeyDown(PlayerControlTags.JUMP)|| isPressingJumpButton;
+        return Input.GetKeyDown(PlayerControlTags.JUMP);
     }
 
     protected virtual void CheckSprintAction()
     {
-        if (Input.GetKey(PlayerControlTags.Sprint) || isPressingSprintButton)
+        if (Input.GetKey(PlayerControlTags.Sprint))
         {
             isSprinting = true;
             return;
         }
 
-        if (Input.GetKeyUp(PlayerControlTags.Sprint) || !isPressingSprintButton)
+        if (Input.GetKeyUp(PlayerControlTags.Sprint))
         {
             isSprinting = false;
             return;
@@ -223,7 +222,7 @@ public class PlayerController : MonoBehaviour
     
     protected virtual void CheckCrouchAction()
     {
-        if (Input.GetKeyDown(PlayerControlTags.Crouch) || isPressingCrouchButton)
+        if (Input.GetKeyDown(PlayerControlTags.Crouch))
         {
             isCrouching = !isCrouching;
             return;
@@ -232,12 +231,9 @@ public class PlayerController : MonoBehaviour
 
     // Buttons
     // Change pressing buttons
-    public void ChangeIsPressingJumpButton(bool value)
+    public virtual void ChangeIsPressingJumpButton(bool value)
     {
-        isPressingJumpButton = value;
+        
     }
-    public void ChangeIsPressingSprintButton(bool value)
-    {
-        isPressingSprintButton = value;
-    }
+
 }

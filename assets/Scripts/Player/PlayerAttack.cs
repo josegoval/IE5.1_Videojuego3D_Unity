@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
 {
     // Object references
     private WeaponManager weaponManager;
-    private WeaponHandler currentSelectedWeapon;
+    protected WeaponHandler currentSelectedWeapon;
     private Animator firstPersonCameraAnimator;
     private GameObject crosshair;
     public Camera mainCamera;
@@ -75,7 +75,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void CheckShoot()
+    protected virtual void CheckShoot()
     {
         // Shoot functionality
         if (Input.GetKey(PlayerControlTags.ACTION_1))

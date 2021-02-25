@@ -7,16 +7,16 @@ public class MouseController : MonoBehaviour
 {
     // Actor References
     [SerializeField]
-    private GameObject lookRootComponent;
+    protected GameObject lookRootComponent;
     // Control customization
     public float mouseSensibility = 3f;
     public bool invertControls = false;
-    private Vector3 currentRotation;
+    protected Vector3 currentRotation;
     // Clamp Values
     [SerializeField]
-    private float maxLookUp = 80f;
+    protected float maxLookUp = 80f;
     [SerializeField]
-    private float minLookUp = -70f;
+    protected float minLookUp = -70f;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +51,7 @@ public class MouseController : MonoBehaviour
         }
     }
 
-    private void MouseRotation()
+    protected virtual void MouseRotation()
     {
         // Get mouse inputs 
         float lookHorizontal = Input.GetAxis(PlayerControlTags.MOUSE_X);
