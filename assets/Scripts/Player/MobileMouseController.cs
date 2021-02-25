@@ -8,6 +8,16 @@ public class MobileMouseController : MouseController
     [Header("Mobile Setup")]
     public Joystick rotationJoystick;
 
+    private void Start()
+    {
+        
+    }
+
+    private void Update()
+    {
+        MouseRotation();
+    }
+
     protected override void MouseRotation()
     {
         // Get mouse inputs 

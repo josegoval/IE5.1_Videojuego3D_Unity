@@ -25,16 +25,16 @@ public class WeaponManager : MonoBehaviour
     private void checkNewWeapon()
     {
         // Mouse wheel input
-        if (Input.mouseScrollDelta.y > 0 || nextWeapon)
+        if (Input.mouseScrollDelta.y > 0 || previousWeapon)
         {
             changeWeapon(currentSelectedWeapon - 1);
-            ChangeNextWeapon(false);
+            ChangePreviousWeapon(false);
             return;
         }
-        if (Input.mouseScrollDelta.y < 0 || previousWeapon)
+        if (Input.mouseScrollDelta.y < 0 || nextWeapon)
         {
             changeWeapon(currentSelectedWeapon + 1);
-            ChangePreviousWeapon(false);
+            ChangeNextWeapon(false);
             return;
         }
 
